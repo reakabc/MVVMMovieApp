@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements MovieListAdapter.
         adapter = new MovieListAdapter(this, list, this);
         recyclerView.setAdapter(adapter);
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        //viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(MainViewModel.class);
         viewModel.getMovieList().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
